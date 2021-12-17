@@ -63,9 +63,7 @@ float error_curr, error_prev, control, pterm, dterm, iterm;
 
 void setup() {
 myservo.attach(PIN_SERVO);
-
 pinMode(PIN_LED,OUTPUT);
-
 duty_curr = _DUTY_NEU;
 
 // move servo to neutral position
@@ -80,16 +78,12 @@ Serial.begin(57600);
   
 
 void loop() {
-/////////////////////
-// Event generator //
-/////////////////////
-
 unsigned long time_curr = millis();
 if(time_curr >= last_sampling_time_dist + _INTERVAL_DIST){
     last_sampling_time_dist += _INTERVAL_DIST;
     event_dist = true;
 }
-
+  
 if(time_curr >= last_sampling_time_servo + _INTERVAL_SERVO ){
     last_sampling_time_servo += _INTERVAL_SERVO;
     event_servo = true;
@@ -99,10 +93,6 @@ if(time_curr >= last_sampling_time_serial + _INTERVAL_SERIAL ){
     last_sampling_time_serial += _INTERVAL_SERIAL;
     event_serial = true;
 }
-
-////////////////////
-// Event handlers //
-////////////////////
 
   // get a distance reading from the distance sensor
   if(event_dist) {
